@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	firebase "firebase.google.com/go"
+	firestore "cloud.google.com/go/firestore"
 	entities "github.com/AndresJejen/GoPersonalServer/entities"
 	"google.golang.org/api/iterator"
 )
@@ -31,13 +31,13 @@ func (*repo) Save(post *entities.Post) (*entities.Post, error) {
 	ctx := context.Background()
 	// conf := &firebase.Config{ProjectID: projectID}
 	// opt := option.WithCredentialsFile("github.com/AndresJejen/GoPersonalServer/FireBaseCredentialsFile.json")
-	app, err := firebase.NewApp(ctx, nil)
+	// app, err := firebase.NewApp(ctx, nil)
 
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	client, err := app.Firestore(ctx)
+	client, err := firestore.NewClient(ctx, projectID)
 
 	if err != nil {
 		log.Fatalf("Failed to create a Firestore Client: %v", err)
@@ -63,13 +63,13 @@ func (*repo) FindAll() ([]entities.Post, error) {
 	ctx := context.Background()
 	// conf := &firebase.Config{ProjectID: projectID}
 	// opt := option.WithCredentialsFile("../FireBaseCredentialsFile.json")
-	app, err := firebase.NewApp(ctx, nil)
+	// app, err := firebase.NewApp(ctx, nil)
 
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	client, err := app.Firestore(ctx)
+	client, err := firestore.NewClient(ctx, projectID)
 
 	if err != nil {
 		log.Fatalf("Failed to create a Firestore Client: %v", err)

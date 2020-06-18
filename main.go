@@ -20,6 +20,6 @@ func main() {
 	router.HandleFunc("/post", getPost).Methods("GET")
 	router.HandleFunc("/post", addPost).Methods("POST")
 
-	log.Println("Server Running on port", port)
+	log.Println("Server is Running on port", port)
 	log.Fatalln(http.ListenAndServe(port, router))
 }
