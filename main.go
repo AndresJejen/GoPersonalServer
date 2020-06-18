@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	fmt.Printf("Hello Go")
 	router := mux.NewRouter()
 
 	const port string = ":8000"
