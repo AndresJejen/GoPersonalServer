@@ -2,24 +2,27 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/AndresJejen/GoPersonalServer/controller"
+	"github.com/AndresJejen/GoPersonalServer/router"
+)
+
+var (
+	httpRouter     router.Router             = router.NewMuxRouter()
+	postController controller.PostController = controller.NewPostController()
 )
 
 func main() {
-	router := mux.NewRouter()
 
 	const port string = ":8000"
 
-	router.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
-		fmt.Fprintln(resp, "Response from the sever")
+	httpRouter.GET("/", func(resp http.ResponseWriter, req *http.Request) {
+		fmt.Fprintln(resp, "Your system is Online")
 	})
 
-	router.HandleFunc("/post", getPost).Methods("GET")
-	router.HandleFunc("/post", addPost).Methods("POST")
+	httpRouter.GET("/post", postController.GetPost)
+	httpRouter.POST("/post", postController.AddPost)
 
-	log.Println("Server is Running on port", port)
-	log.Fatalln(http.ListenAndServe(port, router))
+	httpRouter.SERVE(port)
 }
