@@ -12,15 +12,18 @@ import (
 type controller struct{}
 
 var (
-	postService service.PostService = service.NewPostService()
+	postService service.PostService
 )
 
+// PostController Blueprint for PostController
 type PostController interface {
 	GetPost(resp http.ResponseWriter, req *http.Request)
 	AddPost(resp http.ResponseWriter, req *http.Request)
 }
 
-func NewPostController() PostController {
+// NewPostController creates a PostController Object
+func NewPostController(service service.PostService) PostController {
+	postService = service
 	return &controller{}
 }
 

@@ -5,12 +5,16 @@ import (
 	"net/http"
 
 	"github.com/AndresJejen/GoPersonalServer/controller"
+	"github.com/AndresJejen/GoPersonalServer/repository"
 	"github.com/AndresJejen/GoPersonalServer/router"
+	"github.com/AndresJejen/GoPersonalServer/service"
 )
 
 var (
+	postRepository repository.PostRepository = repository.NewFirestoreRepository()
+	postService    service.PostService       = service.NewPostService(postRepository)
+	postController controller.PostController = controller.NewPostController(postService)
 	httpRouter     router.Router             = router.NewMuxRouter()
-	postController controller.PostController = controller.NewPostController()
 )
 
 func main() {

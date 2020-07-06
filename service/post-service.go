@@ -8,6 +8,7 @@ import (
 	"github.com/AndresJejen/GoPersonalServer/repository"
 )
 
+// PostService blueprint for General Services
 type PostService interface {
 	Validate(post *entities.Post) error
 	Create(post *entities.Post) (*entities.Post, error)
@@ -17,10 +18,12 @@ type PostService interface {
 type service struct{}
 
 var (
-	repo repository.PostRepository = repository.NewFirestoreRepository()
+	repo repository.PostRepository
 )
 
-func NewPostService() PostService {
+// NewPostService Creates a Service implementation
+func NewPostService(repoImplementation repository.PostRepository) PostService {
+	repo = repoImplementation
 	return &service{}
 }
 
