@@ -14,7 +14,7 @@ Also i can work on DataScience Projects, i have worked in some ones, from Comput
 You can find me in
 **Twitter:** http://twitter.com/andres_jejen
 
-Feel free to talk me and share a cofee.
+Feel free to talk me and share a coffee.
 
 ### No less God within the shadows, no less faithfull when the night lead me astray... Hillsong United.
 
